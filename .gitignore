@@ -1,3 +1,4 @@
 data/
 logs/
 ukb_prs_pipeline/__pycache__/
+hail*log

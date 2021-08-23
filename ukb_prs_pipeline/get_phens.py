@@ -26,24 +26,5 @@ def get_phenotype(input_path, sample_id_col, phenotype_map: dict, read_csv_kwarg
             df[final_col_name] = reduce(lambda x, y: (x == 1) | (
                 y == 1), [df[field] for field in col_names]).sum()
         else:
-            df.rename(columns={col_names: final_col_Name}, inplace=True)
-     #return df
-     #df.rename(columns={sample_id_col: 's'}, inplace=True)
-     #return df
-
-
-def main(args):
-    pass
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', default=None, help='Input file path')
-    parser.add_argument('--sample_id_column', default=None,
-                        help='Sample ID column name')
-    parser.add_argument('--phenotype_column', default=None,
-                        help='Phenotype column name')
-    parser.add_argument('--output_path', default=None, help='Output file path')
-    args = parser.parse_args()
-
-    main(args)
+            df.rename(columns={col_names: final_col_name}, inplace=True)
+    return df

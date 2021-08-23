@@ -7,11 +7,11 @@ Calculate effect sizes for PRS
 
 import argparse
 
-def run_prscs(chrom_list, ref_dir, bim_prefix, sst_file, n_gwas, a, b, phi, n_iter,
-        n_burnin, thin, beta_std, seed):
+def run_prscs(chrom_list, ref_dir, bim_prefix, sst_file, n_gwas, out_dir, a=1, b=0.5, phi=None, n_iter=1000,
+        n_burnin=500, thin=5, beta_std=False, seed=None):
 
-    from PRScs.parse_genet import parse_ref, parse_bim, parse_sumstats, parse_ldblk
-    from PRScs.mcmc_gtb_no_write import mcmc
+    from PRScs_dev.parse_genet import parse_ref, parse_bim, parse_sumstats, parse_ldblk
+    from PRScs_dev.mcmc_gtb import mcmc
 
     for chrom in chrom_list:
         print('##### process chromosome %d #####' % int(chrom))
@@ -39,8 +39,7 @@ def run_prscs(chrom_list, ref_dir, bim_prefix, sst_file, n_gwas, a, b, phi, n_it
                 a = a, b = b, phi = phi, sst_dict = sst_dict, n = n_gwas,
                 ld_blk = ld_blk, blk_size = blk_size, n_iter = n_iter,
                 n_burnin = n_burnin, thin = thin, chrom = chrom,
-                beta_std = beta_std, seed = seed
+                out_dir = out_dir, beta_std = beta_std, seed = seed
         )
-    return sst_dict
 
 
