@@ -20,7 +20,7 @@ def t2d_test(chrom):
     from ukb_utils.genotypes import get_ukb_imputed_v3_bgen, AUTOSOMES
     from ukb_prs_pipeline.calc_betas import run_prscs
 
-    chrom_list=[chrom]
+    chrom_list=[int(chrom)]
 
     #  hl.init(
     #      log="logs/t2d_hail.log",
