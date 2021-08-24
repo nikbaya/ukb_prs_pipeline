@@ -9,7 +9,7 @@
 #$ -o logs/calc_prs.log
 #$ -e logs/calc_prs.errors.log
 #$ -P lindgren.prjc
-#$ -pe shmem 8
+#$ -pe shmem 24
 #$ -q short.qe
 
 set -o errexit
@@ -21,7 +21,6 @@ for util_type in {qsub,hail}; do
 done
 
 # options
-readonly chrom=$( get_chr ${SGE_TASK_ID} )
 readonly prs_method="prs_cs"
 
 # Hail script
@@ -29,6 +28,7 @@ readonly hail_script="ukb_prs_pipeline/calc_prs.py"
 
 job_set_up() {
   module load Anaconda3/2020.07
+  spark_dir="data/tmp/spark"
   set_up_hail
   export PYTHONPATH="/well/lindgren/UKBIOBANK/nbaya/resources/ukb_utils"
   export PYTHONPATH="$PYTHONPATH:/well/lindgren/UKBIOBANK/nbaya/ukb_prs_pipeline"
